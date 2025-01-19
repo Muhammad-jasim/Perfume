@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        
+    <record id="clone_delivery_order_action" model="ir.actions.act_window">
+        <field name="name">Clone Delivery Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('is_clone_order','=','True')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+  
+            </p>
+        </field>
+    </record>
+  
+    <menuitem 
+        name="Clone Delivery Orders" 
+        id="menu_clone_delivery_order" 
+        sequence="10" 
+        parent="stock.menu_stock_warehouse_mgmt" 
+        action="clone_delivery_order_action"/>
+
+    <record id="stock.action_picking_tree_ready" model="ir.actions.act_window">
+        <field name="domain">[('is_clone_order','!=',True)]</field>
+    </record>
+</odoo>

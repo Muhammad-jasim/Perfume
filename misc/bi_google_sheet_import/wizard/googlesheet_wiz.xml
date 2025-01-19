@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+
+    <record id="select_customer_googlesheet_wizard_inherit" model="ir.ui.view">
+        <field name="name">select.customers.googlesheet.wizard.inherit</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="inherit_id" ref="odoo_forge_google_sheet_customers.select_customer_googlesheet_wizard"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_ids']" position="after">
+                <label for="model_id"/>
+                <field name="model_id" domain="[('model','in',('clone.order.list','clone.stock.update'))]"/>
+                <field name="model" invisible="1"/>
+                <field name="clone_order_ids" options="{'no_edit':True, 'no_create_edit':True, 'no_open': True, 'no_create_edit': True, 'no_create':True}" invisible="model != 'clone.order.list'">
+                    <tree>
+                        <field name="order_id" string="Google Sheet Rows - Order to add to Google Sheet"/>
+                    </tree>
+                </field>
+                <field name="clone_stock_update_ids" options="{'no_edit':True, 'no_create_edit':True, 'no_open': True, 'no_create_edit': True, 'no_create':True}" invisible="model != 'clone.stock.update'">
+                    <tree>
+                        <field name="sku" string="Google Sheet Rows - Stock Update to add to Google Sheet"/>
+                    </tree>
+                </field>
+            </xpath>
+            <!-- <button name="create_google_sheet" invisible="1"/>   -->
+            <button name="create_google_sheet" position="after">
+                <button string="Create Google Sheet" name="create_google_sheet_new" type="object" class="oe_highlight"/>  
+            </button>
+            <xpath expr="//button[@name='create_google_sheet']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="action_open_sync_view_customer_clone_order" model="ir.actions.act_window">
+        <field name="name">Update Clone Order List Data from Google Sheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">google.sheet.customer.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="odoo_forge_google_sheet_customers.wizard_open_sync_view_customer"/>
+        <field name="target">new</field>
+        <field name="context">{'model':'clone.order.list'}</field>
+    </record>
+
+
+    <menuitem id="menu_action_open_sync_view_customer_clone_order" parent="main_google_sheet_import" action="action_open_sync_view_customer_clone_order" sequence="20"/>
+    
+
+    <record id="action_open_sync_view_customer_clone_stock" model="ir.actions.act_window">
+        <field name="name">Update Clone Stock List Data from Google Sheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">google.sheet.customer.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="odoo_forge_google_sheet_customers.wizard_open_sync_view_customer"/>
+        <field name="target">new</field>
+        <field name="context">{'model':'clone.stock.update'}</field>
+    </record>
+
+    <menuitem id="menu_action_open_sync_view_customer_clone_stock" parent="main_google_sheet_import" action="action_open_sync_view_customer_clone_stock" sequence="20"/>
+
+    <record id="wizard_open_sync_view_customer_inherit" model="ir.ui.view">
+        <field name="name">wiz.google.sheet.m2o.inherit</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="inherit_id" ref="odoo_forge_google_sheet_customers.wizard_open_sync_view_customer"/>
+        <field name="arch" type="xml">
+            <xpath expr="//p" position="after">
+                <group>
+                    <group>
+                        <field name="is_existing_sheet"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

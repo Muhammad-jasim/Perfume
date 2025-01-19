@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="select_customer_googlesheet_wizard" model="ir.ui.view">
+        <field name="name">select.customers.googlesheet.wizard</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Select Customers">
+                <group>
+                    <group colspan="4" col="4">
+                        <field name="google_sheet_name" colspan="4"/>
+                        <field name="email_share_list" colspan="4"/>
+                    </group>
+                    <field name="partner_ids" options="{'no_edit':True, 'no_create_edit':True, 'no_open': True, 'no_create_edit': True, 'no_create':True}">
+                        <tree>
+                            <field name="name" string="Google Sheet Rows - Customers to add to Google Sheet"/>
+                            <field name="image_128" string="Image" widget='image'/>
+                            <!-- <field name="default_code" />
+                            <field name="list_price" />
+                            <field name="standard_price" /> -->
+                        </tree>
+                    </field>
+                    <field name="customer_field_ids" options="{'no_edit':True, 'no_create_edit':True, 'no_open': True, 'no_create_edit': True, 'no_create':True}">
+                        <tree>
+                            <field name="field_description" string="Google Sheet Columns - Customer fields to add" />
+                        </tree>
+                    </field>
+
+                    <newline/>
+                    <separator string="Instructions" colspan="4"/>
+                    
+                    <ol style="padding-left: 2.5em;">
+                        <li>Edit the name for your Google sheet and add google email addresses if needed.</li>
+                        <li>Click 'Add a line' to search for your customers to add. This will open a new window.</li>
+                        <li>Search for your customers as needed, then check the customers you want to add and click 'Select'.</li>
+                        <li>This will bring you back to this window. Now you have customers listed that will become the 'rows' in your google sheet.</li>
+                        <li>Under "Google Sheet Columns", click 'Add a line' to search for the fields you'd like to add as your columns in the google sheet.</li>
+                        <li>Now, you can create a Google Sheet with your selected customers.</li>
+                        <li>Note: The first column in the Google Sheet are readonly and protected (light blue). Do not change these cells and be careful when sorting the sheet as this is used as a reference when syncing data back into Odoo.</li>
+                    </ol>
+                    <!-- <group colspan="4" col="4">
+                        <field name="report_usage" colspan="4"/> -->
+                    <!-- </group> -->
+                    <label for="report_usage"/>
+                    <field name="report_usage" class="o_field_boolean" widget="boolean_toggle"/>
+                    <div class="text-muted">
+                        Join us in improving this app by opting into usage data reporting—your insights will directly enhance the app's performance and user experience, and your privacy will always be protected. It's voluntary, simple, and you can opt-out anytime. Email us at info@odooforge.com for any questions.
+                    </div>
+            
+                </group>
+                <footer>
+                    <button string="Create Google Sheet" name="create_google_sheet" type="object" class="oe_highlight"/>  
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+            
+        </field>
+    </record>
+
+
+    <record id="wizard_open_many2one_open_gs_view_customer" model="ir.ui.view">
+        <field name="name">wiz.google.sheet.m2o</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="arch" type="xml">
+            <form edit="false">
+                <span><strong>How to: </strong>
+                    <br/>* Select a google spreadsheet from the list and click "Open Google Sheet".  <br/>
+                    * A window will appear with your customers in a list in Odoo.  <br/>  </span>
+                    <br/>
+                <p class="text-left">
+                    <field name="google_spread_sheet_to_sync_from" options="{'no_create': True, 'no_quick_create': True, 'no_edit':True, 'no_create_edit':True, 'no_open':True}"/>
+                </p>
+
+            <footer>
+                <button string="Open Google Sheet" name="open_odoo_list_view" type="object" class="oe_highlight"/>  
+                <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_open_google_sheet_external_customer" model="ir.ui.view">
+        <field name="name">wiz.google.sheet.m2o</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="arch" type="xml">
+            <form edit="false">
+                <span><strong>How to: </strong>
+                    <br/>* Select a google spreadsheet from the list and click "Open Google Sheet".  <br/>
+                    * A new tab will be opened with your spreadsheet in Google Sheets.  <br/>  </span>
+                    <br/>
+                <p class="text-left">
+                    <field name="google_spread_sheet_to_sync_from" options="{'no_create': True, 'no_quick_create': True, 'no_edit':True, 'no_create_edit':True, 'no_open':True}"/>
+                </p>
+
+            <footer>
+                <button string="Open Google Sheet" name="open_google_sheet_external" type="object" class="oe_highlight"/>  
+                <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_open_sync_view_customer" model="ir.ui.view">
+        <field name="name">wiz.google.sheet.m2o</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="arch" type="xml">
+            <form edit="false">
+                <span><strong>How to: </strong>
+                    <br/>* Select a google spreadsheet from the list and click "Update Data from Google Sheet".  <br/>
+                        * A window will appear with your customers in a list in Odoo.  <br/>  
+                        * Note, update will not update relational fields if present in your google sheet.<br/>  
+                </span>
+                    <br/>
+                <p class="text-left">
+                    <field name="google_spread_sheet_to_sync_from" options="{'no_create': True, 'no_quick_create': True, 'no_edit':True, 'no_create_edit':True, 'no_open':True}"/>
+                </p>
+
+            <footer>
+                <button string="Update Data from Google Sheet" name="sync_google_sheet" type="object" class="oe_highlight"/>  
+                <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="wizard_return_success_message_customer" model="ir.ui.view">
+        <field name="name">wiz.google.sheet.message</field>
+        <field name="model">google.sheet.customer.wiz</field>
+        <field name="arch" type="xml">
+            <form edit="false">
+                <p class="text-center">
+                    <field name="message" readonly="1"/>
+                </p>
+                <footer>
+                    <button string="Close" class="btn" special="cancel"/>
+               </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_wiz_wizard_create_google_sheet_customer" model="ir.actions.act_window">
+        <field name="name">Create Google Sheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">google.sheet.customer.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="select_customer_googlesheet_wizard"  />
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_open_m2o_gs_view_customer" model="ir.actions.act_window">
+        <field name="name">Customers in Google Sheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">google.sheet.customer.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_open_many2one_open_gs_view_customer"  />
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_open_google_sheet_external_customer" model="ir.actions.act_window">
+        <field name="name">Customers in Google Sheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">google.sheet.customer.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_open_google_sheet_external_customer"  />
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_open_sync_view_customer" model="ir.actions.act_window">
+        <field name="name">Update Data from Google Sheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">google.sheet.customer.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_open_sync_view_customer"  />
+        <field name="target">new</field>
+    </record>
+    
+    
+
+    <record id="view_google_sheet_open_wizard_form_customer" model="ir.ui.view">
+        <field name="name">google.sheet.open.wizard.form</field>
+        <field name="model">google.sheet.open.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="sheet_url" widget="url"/>
+                </group>
+                <footer>
+                    <button string="Open Google Sheet" type="object" name="open_google_sheet" class="btn-primary"/>
+                    <button string="Close" class="btn" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

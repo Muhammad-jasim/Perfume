@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_clone_order_list_user,bi_google_sheet_import.clone.order.list,model_clone_order_list,base.group_user,1,1,1,1

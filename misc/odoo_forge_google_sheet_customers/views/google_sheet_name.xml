@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<record id="select_product_googlesheet_name_customer" model="ir.ui.view">
+    <field name="name">select.google.sheet.name.view</field>
+    <field name="model">google.sheet.name</field>
+    <field name="arch" type="xml">
+        <tree string="Google Sheets" default_order="create_date desc">
+            <field name="name"/>
+            <field name="create_date"/>
+            <field name="url"/>
+        </tree>
+    </field>
+</record>
+
+<!-- Open Google Sheet Customers in Odoo menu item -->
+<record id="res_partner_custom_tree_gs" model="ir.ui.view">
+    <field name="name">res.partner.custom.tree.gs</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+                <tree string="Contacts" multi_edit="1">
+                    <field name="display_name" string="Name"/>
+                    <field name="function" invisible="1"/>
+                    <field name="phone" class="o_force_ltr" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="user_id" optional="show" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="hide" readonly="1"/>
+                    <field name="country_id" optional="show" readonly="1"/>
+                    <field name="vat" optional="hide" readonly="1"/>
+                    <field name="category_id" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                    <field name="is_company" invisible="1"/>
+                    <field name="parent_id" invisible="1" readonly="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+    </field>
+</record>
+
+<!-- menuitems for sale root -->
+<menuitem
+    id="gsheetparentcustomer"
+    name="Google Sheets - Customers"
+    parent="sale.sale_menu_root"
+    sequence="50"/>
+
+
+<menuitem
+    id="gsheetwizcustomer"
+    name="Create Google Sheet"
+    action="action_wiz_wizard_create_google_sheet_customer"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcustomer"
+    sequence="10"/>
+
+
+<menuitem
+    id="gsheetsynccustomer"
+    name="Update Odoo Data from Google Sheet"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcustomer"
+    action="action_open_sync_view_customer"
+    sequence="20"/>
+
+<menuitem
+    id="gsheetodooviewcustomer"
+    name="Open Google Sheet Customer in Odoo"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcustomer"
+    action="action_open_m2o_gs_view_customer"
+    sequence="30"/>
+
+<menuitem
+    id="gsheetopenexternalsheet"
+    name="Open Previously Created Google Sheet"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcustomer"
+    action="action_open_google_sheet_external_customer"
+    sequence="40"/>
+
+<!-- menuitems for crm root -->
+<menuitem
+    id="gsheetparentcrmcustomer"
+    name="Google Sheets - Customers"
+    parent="crm.crm_menu_root"
+    sequence="50"/>
+
+
+<menuitem
+    id="gsheetwizcustomercrm"
+    name="Create Google Sheet"
+    action="action_wiz_wizard_create_google_sheet_customer"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcrmcustomer"
+    sequence="10"/>
+
+
+<menuitem
+    id="gsheetsynccustomercrm"
+    name="Update Odoo Data from Google Sheet"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcrmcustomer"
+    action="action_open_sync_view_customer"
+    sequence="20"/>
+
+<menuitem
+    id="gsheetodooviewcustomercrm"
+    name="Open Google Sheet Customer in Odoo"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcrmcustomer"
+    action="action_open_m2o_gs_view_customer"
+    sequence="30"/>
+
+<menuitem
+    id="gsheetopenexternalsheetcrm"
+    name="Open Previously Created Google Sheet"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcrmcustomer"
+    action="action_open_google_sheet_external_customer"
+    sequence="40"/>
+
+
+<!-- menuitems for contacts root -->
+<menuitem
+    id="gsheetparentcontactscustomer"
+    name="Google Sheets - Customers"
+    parent="contacts.menu_contacts"
+    sequence="50"/>
+
+
+<menuitem
+    id="gsheetwizcustomercontacts"
+    name="Create Google Sheet"
+    action="action_wiz_wizard_create_google_sheet_customer"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcontactscustomer"
+    sequence="10"/>
+
+
+<menuitem
+    id="gsheetsynccustomercontacts"
+    name="Update Odoo Data from Google Sheet"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcontactscustomer"
+    action="action_open_sync_view_customer"
+    sequence="20"/>
+
+<menuitem
+    id="gsheetodooviewcustomercontacts"
+    name="Open Google Sheet Customer in Odoo"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcontactscustomer"
+    action="action_open_m2o_gs_view_customer"
+    sequence="30"/>
+
+<menuitem
+    id="gsheetopenexternalsheetcontacts"
+    name="Open Previously Created Google Sheet"
+    parent="odoo_forge_google_sheet_customers.gsheetparentcontactscustomer"
+    action="action_open_google_sheet_external_customer"
+    sequence="40"/>
+
+
+
+</odoo>

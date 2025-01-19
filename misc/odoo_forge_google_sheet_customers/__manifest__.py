@@ -30,6 +30,6 @@
         'views/map_template.xml',
     ],
     'images': ['static/description/cover-google-sheets-customers-v13-v17.gif'],
-    'external_dependencies': {'python' : ['gspread','gspread_formatting','oauth2client']},
+    # 'external_dependencies': {'python' : ['gspread','gspread_formatting','oauth2client']},
     
 }

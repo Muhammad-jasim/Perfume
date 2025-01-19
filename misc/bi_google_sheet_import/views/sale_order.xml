@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="clone_order_sale_action" model="ir.actions.act_window">
+        <field name="name">Clone Sale Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_is_clone_order':True}</field>
+        <field name="domain">[('is_clone_order','=','True')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+  
+            </p>
+        </field>
+    </record>
+  
+    <menuitem 
+        name="Clone Sale Orders" 
+        id="menu_clone_order_sale" 
+        sequence="3" 
+        parent="sale.sale_order_menu" 
+        action="clone_order_sale_action"/>
+  
+
+</odoo>

@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="view_res_config_settings_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="Google Integration" string="Google Sheets - Customers" name="odoo_forge_google_sheet_customers">
+                        <block title="Google Integration" name="google_integration_settings">
+                            <setting title="Upload the Google Sheets JSON configuration file here." help="Configure Google Sheets integration by uploading the JSON file.">
+                                <field name="google_sheet_json_data" widget="binary" options="{'accept': '.json'}" filename="google_sheet_json_name"/>
+                            </setting>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <p><strong>Enable API Access for a Project</strong></p>
+                                    <ol><li>Head to <a href="https://console.developers.google.com/">Google Developers Console</a> and create a new project (or select the one you already have).</li><li>In the box labeled “Search for APIs and Services”, search for “Google Drive API” and enable it.</li><li>In the box labeled “Search for APIs and Services”, search for “Google Sheets API” and enable it.</li></ol>
+                                    <p><strong>Service Account</strong></p>
+                                    <ol>
+                                        <li>Enable API Access for a Project if you haven’t done it yet.</li>
+                                        <li>Go to “APIs and Services - Credentials” and choose “Create credentials - Service account key”.</li>
+                                        <li>Fill out the form</li>
+                                        <li>Click “Create” and “Done”.</li>
+                                        <li>Press “Manage service accounts” above Service Accounts.</li>
+                                        <li>Press on ⋮ near recently created service account and select “Manage keys” and then click on “ADD KEY - Create new key”.</li>
+                                        <li>Select JSON key type and press “Create”.</li>
+                                    </ol>
+                                    
+                                    <img src="https://odooforge.s3.amazonaws.com/authentication-json-example.png" alt="json-example" style="max-width:100%;height:auto;"/>
+                                    <p class="text-muted">This is how your JSON file credentials should look like.</p>
+                                    <label for="report_usage"/>
+                                    <field name="report_usage" class="o_field_boolean" widget="boolean_toggle"/>
+                                    <div class="text-muted">
+                                        Join us in improving this app by opting into usage data reporting—your insights will directly enhance the app's performance and user experience, and your privacy will always be protected. It's voluntary, simple, and you can opt-out anytime. Email us at info@odooforge.com for any questions.
+                                    </div>
+                                </div>
+                            </div>
+                        </block>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

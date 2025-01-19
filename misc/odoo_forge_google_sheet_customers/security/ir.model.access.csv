@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_google_sheet_name,access.google.sheet.name,model_google_sheet_name,base.group_user,1,1,1,1
+access_google_sheet_customer_wiz,access.google.sheet.customer.wiz,model_google_sheet_customer_wiz,base.group_user,1,1,1,0
+access_google_sheet_open_wizard,access.google.sheet.open.wizard,model_google_sheet_open_wizard,base.group_user,1,1,1,0
+access_data_report,access.data.report,model_data_report,base.group_user,1,1,1,0
+

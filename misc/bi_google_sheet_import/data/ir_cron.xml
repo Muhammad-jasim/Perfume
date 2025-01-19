@@ -1,0 +1,51 @@
+<odoo>
+
+    <data noupdate="0">
+
+        <record id="update_picking_tracking_ref_cron" model="ir.cron">
+            <field name="name">Update Tracking Ref</field>
+            <field name="model_id" ref="bi_google_sheet_import.model_clone_order_list"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.update_picking_tracking_ref()</field>
+            <field name="interval_number">2</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <record id="create_clone_order_list_cron" model="ir.cron">
+            <field name="name">Create Clone Order</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.create_clone_order()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <record id="update_clone_order_from_sheet_cron" model="ir.cron">
+            <field name="name">Update Clone Order From Sheet</field>
+            <field name="model_id" ref="bi_google_sheet_import.model_google_sheet_customer_wiz"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.update_clone_order_from_sheet()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <!-- <record id="update_clone_stock_from_sheet_cron" model="ir.cron">
+            <field name="name">Update Clone Stock From Sheet</field>
+            <field name="model_id" ref="bi_google_sheet_import.model_google_sheet_customer_wiz"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.update_clone_stock_from_sheet()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+        </record> -->
+
+    </data>
+
+</odoo>

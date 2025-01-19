@@ -3,7 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 import odoo.addons.decimal_precision as dp
-from odoo.exceptions import AccessError, UserError, RedirectWarning, ValidationError, Warning
+from odoo.exceptions import AccessError, UserError, RedirectWarning, ValidationError
 import logging
 from datetime import datetime
 import json

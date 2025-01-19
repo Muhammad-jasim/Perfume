@@ -19,11 +19,11 @@
                         <field name="order_id" string="Google Sheet Rows - Order to add to Google Sheet"/>
                     </tree>
                 </field>
-                <field name="clone_stock_update_ids" options="{'no_edit':True, 'no_create_edit':True, 'no_open': True, 'no_create_edit': True, 'no_create':True}" invisible="model != 'clone.stock.update'">
+                <!-- <field name="clone_stock_update_ids" options="{'no_edit':True, 'no_create_edit':True, 'no_open': True, 'no_create_edit': True, 'no_create':True}" invisible="model != 'clone.stock.update'">
                     <tree>
                         <field name="sku" string="Google Sheet Rows - Stock Update to add to Google Sheet"/>
                     </tree>
-                </field>
+                </field> -->
             </xpath>
             <!-- <button name="create_google_sheet" invisible="1"/>   -->
             <button name="create_google_sheet" position="after">

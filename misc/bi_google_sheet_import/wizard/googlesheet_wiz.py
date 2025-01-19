@@ -27,7 +27,7 @@ class GoogleSheetContactWizard(models.TransientModel):
         domain="[('model_id.model', '=', model)]",
         default=False
     )
-    clone_stock_update_ids = fields.Many2many(comodel_name = 'clone.stock.update',string="Clone Stock Update")
+    # clone_stock_update_ids = fields.Many2many(comodel_name = 'clone.stock.update',string="Clone Stock Update")
     is_existing_sheet = fields.Boolean(string="Is Existing Sheet", default=True)
 
     def create_google_sheet_new(self):
@@ -44,8 +44,8 @@ class GoogleSheetContactWizard(models.TransientModel):
             base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
             if self.clone_order_ids:
                 clone_order_added_status = self.add_clone_to_sheet(worksheet, self.clone_order_ids)
-            if self.clone_stock_update_ids:
-                clone_order_added_status = self.add_clone_to_sheet(worksheet, self.clone_stock_update_ids)
+            # if self.clone_stock_update_ids:
+            #     clone_order_added_status = self.add_clone_to_sheet(worksheet, self.clone_stock_update_ids)
             if not clone_order_added_status: raise UserError(_("customers were not added to the google sheet!"))
             self.set_config_default_values()
             # store sheet in model to be searchable later by user
@@ -145,8 +145,8 @@ class GoogleSheetContactWizard(models.TransientModel):
         if self.model_id:
             if not self.clone_order_ids and self.model == 'clone.order.list':
                 raise UserError(_("Please add clone order to be added as google sheet rows!"))
-            if not self.clone_stock_update_ids and self.model == 'clone.stock.update':
-                raise UserError(_("Please add clone stock to be added as google sheet rows!"))
+            # if not self.clone_stock_update_ids and self.model == 'clone.stock.update':
+            #     raise UserError(_("Please add clone stock to be added as google sheet rows!"))
         # if not self.partner_ids:
         #     raise UserError(_("Please add customers to be added as google sheet rows!"))
         # if not self.product_field_ids:

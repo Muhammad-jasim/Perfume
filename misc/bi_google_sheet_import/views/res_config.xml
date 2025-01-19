@@ -7,7 +7,7 @@
       <field name="priority" eval="25"/>
       <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
       <field name="arch" type="xml">
-        <div data-key="sale_management" position="inside">
+        <app name="sale_management" position="inside">
             <h2 class="mt32">Clone Order Import</h2>
             <div class="row mt16 o_settings_container" id="clone_order_import_setting_container">
                 <div class="col-12 col-lg-6 o_setting_box" id="clone_order_import_prefix">

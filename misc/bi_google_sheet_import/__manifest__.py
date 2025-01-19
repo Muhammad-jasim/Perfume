@@ -1,7 +1,7 @@
 {
     "name": "Bi Google Sheet Import",
     "summary": "Google Sheet",
-    "version": "15.0.0.1",
+    "version": "17.0",
     "author": "Bassam Infotech LLP",
     "website": "https://www.bassaminfotech.com",
     "license": "LGPL-3",
